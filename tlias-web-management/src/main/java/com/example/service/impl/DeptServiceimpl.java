@@ -1,16 +1,16 @@
-package com.example.service;
+package com.example.service.impl;
 
 import com.example.mapper.DeptMapper;
 import com.example.pojo.Dept;
+import com.example.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class impLDeptServiceimpl implements DeptService{
+public class DeptServiceimpl implements DeptService {
     @Autowired
     private DeptMapper deptMapper;
 

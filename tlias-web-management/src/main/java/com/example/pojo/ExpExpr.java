@@ -8,7 +8,7 @@ import java.time.LocalDate;
  * 工作经历
  */
 @Data
-public class EmpExpr {
+public class ExpExpr {
     private Integer id; //ID
     private Integer empId; //员工ID
     private LocalDate begin; //开始时间
