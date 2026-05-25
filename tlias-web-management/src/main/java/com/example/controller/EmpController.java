@@ -11,6 +11,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 @Slf4j
 @RequestMapping("/emps")
@@ -50,4 +52,25 @@ public class EmpController {
         empService.save(emp);
         return Result.success();
     }
+
+//    @DeleteMapping
+//    public Result delete(Integer[] ids) {
+//        log.info("删除员工数据，参数：{}", Arrays.toString(ids));
+//        return Result.success();
+//    }
+
+    @DeleteMapping
+    public Result delete(@RequestParam List<Integer> ids) {
+        log.info("删除员工数据，参数：{}", ids);
+        empService.delete(ids);
+        return Result.success();
+    }
+
+    @GetMapping("{id}")
+    public Result get(@PathVariable Integer id) {
+        log.info("查询员工数据，参数：{}", id);
+        Emp emp = empService.getInfo(id);
+        return Result.success(emp);
+    }
+
 }

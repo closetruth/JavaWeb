@@ -12,19 +12,67 @@
 
 
 <mapper namespace="com.example.mapper.EmpMapper">
-<select id="list" resultType="com.example.pojo.Emp">
-    select *, d.name as deptName from emp e left join dept d on e.dept_id = d.id
-    <where>
-        <if test="name != null and name != ''">
-            and e.name like concat('%', #{name}, '%')
-        </if>
-        <if test="gender != null">
-            and e.gender = #{gender}
-        </if>
-        <if test="begin != null and end != null">
-            and e.entry_date between #{begin} and #{end}
-        </if>
-    </where>
-    order by e.update_time desc
-</select>
+    <delete id="deleteByIds">
+        delete from emp where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+    <select id="list" resultType="com.example.pojo.Emp">
+        select *, d.name as deptName from emp e left join dept d on e.dept_id = d.id
+        <where>
+            <if test="name != null and name != ''">
+                and e.name like concat('%', #{name}, '%')
+            </if>
+            <if test="gender != null">
+                and e.gender = #{gender}
+            </if>
+            <if test="begin != null and end != null">
+                and e.entry_date between #{begin} and #{end}
+            </if>
+        </where>
+        order by e.update_time desc
+    </select>
+
+
+    <resultMap id="empResultMap" type="com.example.pojo.Emp">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="name" column="name"/>
+        <result property="gender" column="gender"/>
+        <result property="phone" column="phone"/>
+        <result property="job" column="job"/>
+        <result property="salary" column="salary"/>
+        <result property="image" column="image"/>
+        <result property="entryDate" column="entry_date"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="deptName" column="deptName"/>
+        <collection property="exprList" ofType="com.example.pojo.ExpExpr">
+            <id property="id" column="ee_id"/>
+            <result property="begin" column="ee_begin"/>
+            <result property="end" column="ee_end"/>
+            <result property="company" column="ee_company"/>
+            <result property="job" column="ee_job"/>
+            <result property="empId" column="ee_emp_id"/>
+        </collection>
+
+    </resultMap>
+
+    <select id="getById" resultMap="empResultMap">
+        select
+            e.*,
+            ee.id ee_id,
+            ee.begin ee_begin,
+            ee.end ee_end,
+            ee.company ee_company,
+            ee.job ee_job
+        from emp e left join emp_expr ee on e.id = ee.emp_id
+        where e.id = #{id}
+    </select>
 </mapper>
+

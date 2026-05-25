@@ -8,6 +8,11 @@ spring:
     username: root
     password: 1234
 
+servlet:
+  multipart:
+    max-file-size: 10MB
+    max-request-size: 100MB
+
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
@@ -16,3 +21,9 @@ mybatis:
 logging:
   level:
     org.springframework.jdbc.support.JdbcTransactionManager: debug
+
+aliyun:
+  oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    bucketName: java-web-ai-360
+    region: cn-beijing
