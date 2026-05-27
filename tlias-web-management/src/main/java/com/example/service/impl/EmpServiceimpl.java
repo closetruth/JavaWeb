@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -94,5 +95,19 @@ public class EmpServiceimpl implements EmpService {
     @Override
     public Emp getInfo(Integer id) {
         return empMapper.getById(id);
+    }
+
+    @Transactional(rollbackFor = {Exception.class})
+    @Override
+    public void update(Emp emp) {
+        emp.setUpdateTime(LocalDateTime.now());
+        empMapper.updateById(emp);
+
+        empExprMapper.deleteByEmpIds(Arrays.asList(emp.getId()));
+        List<ExpExpr> exprlist = emp.getExprList();
+        if(!CollectionUtils.isEmpty(exprlist)){
+            exprlist.forEach(expr -> expr.setEmpId(emp.getId()));
+            empExprMapper.insertBatch(exprlist);
+        }
     }
 }

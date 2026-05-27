@@ -73,4 +73,11 @@ public class EmpController {
         return Result.success(emp);
     }
 
+    @PutMapping
+    public Result update(@RequestBody Emp emp) {
+        log.info("更新员工数据，参数：{}", emp);
+        empService.update(emp);
+        return Result.success();
+    }
+
 }
