@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.pojo.ClazzData;
 import com.example.pojo.JobOption;
 import com.example.pojo.Result;
 import com.example.service.ReportService;
@@ -31,6 +32,20 @@ public class ReportController {
         log.info("统计员工性别数");
         List<Map<String, Object>> genderList = reportService.getEmpGenderData();
         return Result.success(genderList);
+    }
+
+    @GetMapping("/studentCountData")
+    public Result getStudentCountData() {
+        log.info("统计学生数");
+        ClazzData clazzData = reportService.getStudentCountData();
+        return Result.success(clazzData);
+    }
+
+    @GetMapping("/studentDegreeData")
+    public Result getStudentDegreeData() {
+        log.info("统计学生学历数");
+        List<Map<String, Object>> degreeList = reportService.getStudentDegreeData();
+        return Result.success(degreeList);
     }
 
 }

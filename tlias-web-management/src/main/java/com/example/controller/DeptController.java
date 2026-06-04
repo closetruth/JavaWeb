@@ -28,9 +28,13 @@ public class DeptController {
     @DeleteMapping("/depts")
     public Result delete(Integer id) {
 //        System.out.println("删除部门数据，id：" + id);
-        log.info("删除部门数据，id：" + id);
-        deptService.deleteById(id);
-        return Result.success();
+        if (deptService.deleteById(id)) {
+            log.info("删除部门数据，id：" + id);
+            return Result.success();
+        } else {
+            log.error("删除部门数据，id：" + id + " 失败 该部门下有员工");
+            return Result.error("删除失败 该部门下有员工");
+        }
     }
 
     @PostMapping("/depts")

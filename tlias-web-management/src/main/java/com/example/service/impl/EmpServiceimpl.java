@@ -97,6 +97,11 @@ public class EmpServiceimpl implements EmpService {
         return empMapper.getById(id);
     }
 
+
+    /**
+     * 更新员工信息（包含工作经历）
+     * 使用事务保证数据一致性：员工基本信息和工作经历要么都成功，要么都失败
+     */
     @Transactional(rollbackFor = {Exception.class})
     @Override
     public void update(Emp emp) {
@@ -109,5 +114,10 @@ public class EmpServiceimpl implements EmpService {
             exprlist.forEach(expr -> expr.setEmpId(emp.getId()));
             empExprMapper.insertBatch(exprlist);
         }
+    }
+
+    @Override
+    public List<Emp> listAllEmployyees() {
+        return empMapper.listAllEmployyees();
     }
 }

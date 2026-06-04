@@ -80,4 +80,11 @@ public class EmpController {
         return Result.success();
     }
 
+    @GetMapping("/list")
+    //查询全部员工数据
+    public Result listAllEmployees() {
+        log.info("查询全部员工数据");
+        List<Emp> list = empService.listAllEmployyees();
+        return Result.success(list);
+    }
 }

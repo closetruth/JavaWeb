@@ -3,11 +3,13 @@ package com.example.exception;
 import com.example.pojo.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
     public Result handleException(Exception e) {
         log.error("服务器发生异常：{}", e);
         e.printStackTrace();

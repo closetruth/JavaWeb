@@ -55,4 +55,10 @@ public interface EmpMapper {
     List<Map<String, Object>> countEmpJobData();
 
     List<Map<String, Object>> countEmpGenderData();
+
+    List<Emp> listAllEmployyees();
+
+    List<Map<String, Object>> countStudentCountData();
+
+    boolean idHasEmp(Integer id);
 }

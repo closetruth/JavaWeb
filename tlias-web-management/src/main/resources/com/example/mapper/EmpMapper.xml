@@ -133,5 +133,11 @@
             count(*) value
         from emp group by gender
     </select>
+    <select id="listAllEmployyees" resultType="com.example.pojo.Emp">
+        select * from emp
+    </select>
+    <select id="idHasEmp" resultType="java.lang.Boolean">
+        select count(*) > 0 from emp where dept_id = #{id}
+    </select>
 </mapper>
 

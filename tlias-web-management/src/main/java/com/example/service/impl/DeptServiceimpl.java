@@ -1,6 +1,7 @@
 package com.example.service.impl;
 
 import com.example.mapper.DeptMapper;
+import com.example.mapper.EmpMapper;
 import com.example.pojo.Dept;
 import com.example.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +15,22 @@ public class DeptServiceimpl implements DeptService {
     @Autowired
     private DeptMapper deptMapper;
 
+    @Autowired
+    private EmpMapper empMapper;
+
     @Override
     public List<Dept> findAll() {
         return deptMapper.findAll();
     }
 
     @Override
-    public void deleteById(Integer id) {
-        deptMapper.deleteById(id);
+    public boolean deleteById(Integer id) {
+        if (empMapper.idHasEmp(id)) {
+            return false;
+        } else {
+            deptMapper.deleteById(id);
+            return true;
+        }
     }
 
     @Override
