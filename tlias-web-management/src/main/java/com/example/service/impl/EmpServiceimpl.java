@@ -5,8 +5,10 @@ import com.example.mapper.EmpMapper;
 import com.example.pojo.*;
 import com.example.service.EmpLogService;
 import com.example.service.EmpService;
+import com.example.utils.JwtUtils;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,8 +16,11 @@ import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+@Slf4j
 @Service
 public class EmpServiceimpl implements EmpService {
     @Autowired
@@ -119,5 +124,21 @@ public class EmpServiceimpl implements EmpService {
     @Override
     public List<Emp> listAllEmployyees() {
         return empMapper.listAllEmployyees();
+    }
+
+    @Override
+    public LoginInfo login(Emp emp) {
+        Emp e = empMapper.getByUsernamePassword(emp.getUsername(), emp.getPassword());
+        if (e != null) {
+            log.info("登录成功，员工信息：{}", e);
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("id", e.getId());
+            claims.put("username", e.getUsername());
+
+            String jwt = JwtUtils.generateToken(claims);
+
+            return new LoginInfo(e.getId(), e.getUsername(), e.getName(), jwt);
+        }
+        return null;
     }
 }

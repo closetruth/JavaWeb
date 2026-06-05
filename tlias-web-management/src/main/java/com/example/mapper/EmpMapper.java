@@ -61,4 +61,7 @@ public interface EmpMapper {
     List<Map<String, Object>> countStudentCountData();
 
     boolean idHasEmp(Integer id);
+
+    @Select("select id, username, name, dept_id from emp where username = #{username} and password = #{password}")
+    Emp getByUsernamePassword(String username, String password);
 }
