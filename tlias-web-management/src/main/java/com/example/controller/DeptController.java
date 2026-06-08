@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.anno.Log;
 import com.example.pojo.Dept;
 import com.example.pojo.Result;
 import com.example.service.DeptService;
@@ -25,6 +26,7 @@ public class DeptController {
         return Result.success(depList);
     }
 
+    @Log
     @DeleteMapping("/depts")
     public Result delete(Integer id) {
 //        System.out.println("删除部门数据，id：" + id);
@@ -37,6 +39,7 @@ public class DeptController {
         }
     }
 
+    @Log
     @PostMapping("/depts")
     public Result add(@RequestBody Dept dept) {
 //        System.out.println("添加部门数据：" + dept);
@@ -53,6 +56,7 @@ public class DeptController {
         return Result.success(dept);
     }
 
+    @Log
     @PutMapping("/depts")
     public Result update(@RequestBody Dept dept) {
 //        System.out.println("修改部门数据：" + dept);
