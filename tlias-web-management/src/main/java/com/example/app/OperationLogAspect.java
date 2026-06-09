@@ -46,7 +46,7 @@ public class OperationLogAspect {
         HttpServletRequest request = attributes.getRequest();
 
         // 2. 获取操作人ls
-        
+
         Integer operateEmpId = CurrentHolder.getCurrentId();
 
         // Integer operateEmpId = getOperateEmpId(request);
