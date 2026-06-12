@@ -165,6 +165,36 @@ INSERT INTO `emp_log` VALUES (1,'2026-05-20 21:54:45','保存员工数据：Emp(
 UNLOCK TABLES;
 
 --
+-- Table structure for table `operate_log`
+--
+
+DROP TABLE IF EXISTS `operate_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `operate_log` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `operate_emp_id` int unsigned DEFAULT NULL COMMENT '操作人ID',
+  `operate_time` datetime DEFAULT NULL COMMENT '操作时间',
+  `class_name` varchar(100) DEFAULT NULL COMMENT '操作的类名',
+  `method_name` varchar(100) DEFAULT NULL COMMENT '操作的方法名',
+  `method_params` varchar(2000) DEFAULT NULL COMMENT '方法参数',
+  `return_value` varchar(2000) DEFAULT NULL COMMENT '返回值',
+  `cost_time` bigint unsigned DEFAULT NULL COMMENT '方法执行耗时, 单位:ms',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='操作日志表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `operate_log`
+--
+
+LOCK TABLES `operate_log` WRITE;
+/*!40000 ALTER TABLE `operate_log` DISABLE KEYS */;
+INSERT INTO `operate_log` VALUES (1,2,'2026-06-08 15:34:59','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',6),(2,2,'2026-06-08 15:48:04','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',1330),(3,2,'2026-06-08 15:48:04','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',1330),(4,2,'2026-06-08 15:49:50','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',4),(5,2,'2026-06-08 15:49:37','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',2343),(6,2,'2026-06-08 16:24:14','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',33260),(7,2,'2026-06-08 16:24:56','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',35848),(8,2,'2026-06-08 16:37:09','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',449),(9,2,'2026-06-08 16:40:13','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',5),(10,NULL,'2026-06-08 21:05:21','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',556),(11,NULL,'2026-06-08 21:08:58','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',27),(12,NULL,'2026-06-08 21:09:08','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',1439),(13,NULL,'2026-06-08 21:13:25','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',397),(14,NULL,'2026-06-08 21:14:29','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',11),(15,NULL,'2026-06-08 21:15:07','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',1737),(16,NULL,'2026-06-08 21:15:07','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',3),(17,NULL,'2026-06-08 21:16:01','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',1048),(18,NULL,'2026-06-08 21:16:01','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',1383),(19,NULL,'2026-06-08 21:16:01','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',1383),(20,NULL,'2026-06-08 21:16:02','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',4),(21,2,'2026-06-08 21:20:39','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',1197),(22,2,'2026-06-08 21:23:56','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',484),(23,2,'2026-06-08 21:23:56','com.example.controller.DeptController','delete','{\"id\":31}','{\"code\":0,\"msg\":\"删除失败 该部门下有员工\",\"data\":null}',484);
+/*!40000 ALTER TABLE `operate_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `student`
 --
 
@@ -213,4 +243,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-04 18:31:07
+-- Dump completed on 2026-06-12 14:40:27
